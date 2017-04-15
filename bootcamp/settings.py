@@ -7,18 +7,24 @@ PROJECT_DIR = Path(__file__).parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-SECRET_KEY = config('SECRET_KEY')
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '_rr4hq4ba9fd1w*c+ol++s02%1e-9i_nl3$w^&7y=o88mm-b8='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
+
+ALLOWED_HOSTS = []
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'csecamp',
+        'USER': 'csecamp',
+        'PASSWORD': 'supersecret',
+        'HOST': 'localhost'
+    }
 }
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # Application definition
 
