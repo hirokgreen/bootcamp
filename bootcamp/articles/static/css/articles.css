@@ -7,6 +7,15 @@
 .articles article p {
   font-size: 1.2em;
 }
+.article p img {
+  height: 200px;
+  width: 300px; 
+}
+
+.article p img {
+  height: 200px;
+  width: 300px; 
+}
 
 .articles article:last-child {
   border-bottom: none;

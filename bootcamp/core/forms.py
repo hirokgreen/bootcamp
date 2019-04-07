@@ -12,8 +12,8 @@ class ProfileForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=30,
         required=False)
-    job_title = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
+    batch = forms.CharField(
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'up/down arrow or input number (e.g: 9)'}),
         max_length=50,
         required=False)
     email = forms.CharField(
@@ -31,7 +31,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'job_title',
+        fields = ['first_name', 'last_name', 'batch',
                   'email', 'url', 'location', ]
 
 

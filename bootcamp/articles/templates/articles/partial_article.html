@@ -13,8 +13,16 @@
       <span class="glyphicon glyphicon-comment"></span>
       {{ article.get_comments.count }} Comments
     </span>
+    </span>
+    <span class="trash">
+      {% if article.create_user.username == user.username %}
+      <a href="{% url 'delete' article.id %}" title="delete this article">
+        <span style="color:darkred" class="glyphicon glyphicon-trash"></span>
+      </a>
+      {% endif %}
+    </span>
   </div>
-  <div class="content">
+  <div class="article content">
     {{ article.get_content_as_markdown|safe }}
   </div>
   {% if article.get_tags %}

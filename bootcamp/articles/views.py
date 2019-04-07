@@ -3,6 +3,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
+from django.contrib.auth.models import User
 
 import markdown
 from bootcamp.articles.forms import ArticleForm
@@ -30,6 +31,12 @@ def _articles(request, articles):
 def articles(request):
     all_articles = Article.get_published()
     return _articles(request, all_articles)
+
+@login_required
+def myarticles(request):
+    user = User.objects.get(username=request.user)
+    my_articles = Article.objects.filter(create_user_id=user.id)
+    return _articles(request, my_articles)
 
 
 @login_required
@@ -98,6 +105,11 @@ def edit(request, id):
     else:
         form = ArticleForm(instance=article, initial={'tags': tags})
     return render(request, 'articles/edit.html', {'form': form})
+
+@login_required
+def delete(request, id):
+    Article.objects.filter(pk=id).delete()
+    return redirect('myarticles')
 
 
 @login_required

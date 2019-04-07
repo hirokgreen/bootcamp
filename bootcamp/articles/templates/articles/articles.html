@@ -2,7 +2,6 @@
 {% load staticfiles %}
 {% load i18n %}
 
-{% block title %} {% trans 'Articles' %} {% endblock %}
 
 {% block head %}
   <link href="{% static 'css/articles.css' %}" rel="stylesheet">
@@ -10,11 +9,17 @@
 
 {% block main %}
   <div class="page-header">
+    <a href="{% url 'articles' %}" class="btn btn-primary pull-left">
+      <span class="glyphicon glyphicon-globe"></span> {% trans 'All Articles' %}
+    </a>
+    <a href="{% url 'myarticles' %}" class="btn btn-primary pull-left" style="margin-left: .8em">
+      <span class="glyphicon glyphicon-user"></span> {% trans 'My Articles' %}
+    </a>
     <a href="{% url 'write' %}" class="btn btn-primary pull-right">
       <span class="glyphicon glyphicon-pencil"></span> {% trans 'Write Article' %}
     </a>
     <a href="{% url 'drafts' %}" class="btn btn-default pull-right" style="margin-right: .8em">{% trans 'Drafts' %}</a>
-    <h1>{% trans 'Articles' %}</h1>
+   
   </div>
   <div class="row">
     <div class="col-md-10">
